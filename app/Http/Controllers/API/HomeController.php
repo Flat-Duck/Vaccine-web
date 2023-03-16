@@ -24,13 +24,22 @@ class HomeController extends ApiController
 
     public function swipes()
     {
-        $swipes = Swipe::all(); //request()->user()->swipes;
+        $swipes = request()->user()->swipes;
 
         return $this->sendResponse("Swipes Loaded", $swipes);
     }
+
+    public function qr(Request $request)
+    {
+        $user = Patient::where('email',$request->email)->get()->first();
+        $user->load(['swipes','shots']);
+
+        return $this->sendResponse("Data Loaded", $user);
+    }
+
     public function shots()
     {
-        $shots = Shot::all(); //request()->user()->shots;
+        $shots = request()->user()->shots;
 
         return $this->sendResponse("Shots Loaded", $shots);
     }
@@ -40,6 +49,12 @@ class HomeController extends ApiController
         $centers = Center::all();
 
         return $this->sendResponse("Centers Loaded", $centers);
+    }
+    public function profile()
+    {
+        $user = request()->user();
+
+        return $this->sendResponse("Profile Loaded", $user);
     }
 
     public function main()

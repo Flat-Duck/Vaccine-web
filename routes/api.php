@@ -14,29 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::name("api.")->namespace('API')->group(function () {
     Route::post('/login', 'AuthController@login');
-    Route::post('/register', 'AuthController@register');
-    
-    Route::post('/stripe', 'HomeController@stripe');
+    Route::get('/qr', 'HomeController@qr');
+    Route::group(['middleware' => ['auth:api']], function () {
 
-    //Route::group(['middleware' => ['auth:api']], function () {
-        
-        
-        // Route::get('/requests', 'RequestingController@index');
-        // Route::post('/requests/{requesting}/accept', 'RequestingController@accept');
-        // Route::post('/requests/{requesting}/refuse', 'RequestingController@refuse');
         Route::get('/posts', 'HomeController@posts');
         Route::get('/swipes', 'HomeController@swipes');
         Route::get('/shots', 'HomeController@shots');
+        Route::get('/profile', 'HomeController@profile');
         Route::get('/main', 'HomeController@main');
+        
         Route::get('/centers', 'HomeController@centers');
         Route::get('/password', 'HomeController@updatePassword');
         Route::post('/password', 'HomeController@updatePassword');
         
-    //});
+    });
 });

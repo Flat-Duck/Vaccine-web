@@ -16,6 +16,7 @@ class Patient extends Authenticatable
     protected $fillable = [        
         'passport','phone'
         ,'username','password','date_birth'
+        ,'email'
         ,'blood','gender','wieght','n_id'
         ,'status','last_lat','last_lng','address'
     ];

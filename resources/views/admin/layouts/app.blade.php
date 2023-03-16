@@ -133,6 +133,12 @@
                                    <span> التطعيمات  </span>
                                </a>
                            </li>
+                           <li {{ $page == 'vaccines' ? ' class = active' : '' }}>
+                            <a href="{{ route('admin.vaccines.index') }}">
+                               <i class="fa fa-needle"></i>
+                               <span> اللقاحات </span>
+                           </a>
+                       </li>
                         </ul>
                     </li>
 

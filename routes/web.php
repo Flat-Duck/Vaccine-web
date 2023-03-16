@@ -43,6 +43,7 @@ Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
         Route::resource('employees', 'EmployeeController');
         Route::resource('swipes', 'SwipeController');
         Route::resource('shots', 'ShotController');
+        Route::resource('vaccines', 'VaccineController');
 
 
         Route::get('/test','FirebaseController@index');

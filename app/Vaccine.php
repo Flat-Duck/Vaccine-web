@@ -7,12 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 class Vaccine extends Model
 {
     protected $types = [
-        1 => 'name', 
-        2 => 'code',
-        3 => 'date',
+        1 => 'مدرسية', 
+        2 => 'مواليد',
+        3 => 'سفر',
+        4 => 'موسمية',
+        5 => 'كورونا',
     ];
-   // use Notifiable;
 
+        /**
+     * Validation rules
+     *
+     * @return array
+     **/
+    public static function validationRules($id = null)
+    {
+        return [
+            'name' => 'required|string',            
+            'code' => 'required|string|unique:vaccines,code,'.$id,
+            'date' => 'required|date',
+            
+        ];
+    }
+   
     /**
      * The attributes that are mass assignable.
      *
@@ -30,4 +46,15 @@ class Vaccine extends Model
     protected $casts = [
         'date' => 'datet',
     ];
+
+        /**
+     * Returns the paginated list of resources
+     *
+     * @return \Illuminate\Pagination\Paginator
+     **/
+    public static function getList()
+    {
+        return static::paginate(10);
+    }
+
 }

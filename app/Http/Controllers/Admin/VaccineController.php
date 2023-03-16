@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Swipe;
+use App\Vaccine;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
     
-class SwipeController extends Controller
+class VaccineController extends Controller
     {
         /**
          * Display a list of Services.
@@ -15,32 +15,32 @@ class SwipeController extends Controller
          */
         public function index()
         {
-            $swipes = Swipe::getList();
+            $vaccines = Vaccine::getList();
     
-            return view('admin.swipes.index', compact('swipes'));
+            return view('admin.vaccines.index', compact('vaccines'));
         }
     
         /**
-         * Show the form for creating a new Swipe
+         * Show the form for creating a new Vaccine
          *
          * @return \Illuminate\Http\Response
          */
         public function create()
         {
-          //  $status = Swipe::status();
+          //  $status = Vaccine::status();
     
-            return view('admin.swipes.add');
+            return view('admin.vaccines.add');
         }
     
         /**
-         * Save new Swipe
+         * Save new Vaccine
          *
          * @return \Illuminate\Http\RedirectResponse
          */
         public function store()
         {
            // dd(request()->all());
-            $validatedData = request()->validate(Swipe::validationRules());
+            $validatedData = request()->validate(Vaccine::validationRules());
     
             //dd($validatedData);
           //  dd($validatedData);  
@@ -48,14 +48,14 @@ class SwipeController extends Controller
           //  $storage = $factory->createStorage();
           //  $database = $factory->createDatabase();
     
-          //  $newID = $database->getReference('swipes')->push(['name' => request()->name])->getKey();
+          //  $newID = $database->getReference('vaccines')->push(['name' => request()->name])->getKey();
     
     
           //  $image = request()->file('icon'); //image file from frontend
     
             //$student = app('firebase.firestore')->database()->collection('Student')->document('defT5uT7SDu9K5RFtIdl');
     
-          //  $firebase_storage_path = 'swipes/';
+          //  $firebase_storage_path = 'vaccines/';
     
           //  $name = $newID;
     
@@ -76,13 +76,13 @@ class SwipeController extends Controller
          //       echo 'success';
          
          //       request()->merge([ 'fbID' => $newID ]);
-          //      $validatedData = request()->validate(Swipe::validationRules());
+          //      $validatedData = request()->validate(Vaccine::validationRules());
         
-                $swipe = Swipe::create($validatedData);
+                $vaccine = Vaccine::create($validatedData);
         
-                return redirect()->route('admin.swipes.index')->with([
+                return redirect()->route('admin.vaccines.index')->with([
                     'type' => 'success',
-                    'message' => 'Swipe added'
+                    'message' => 'Vaccine added'
                 ]);
             // } else {
             //     echo 'error';
@@ -91,61 +91,61 @@ class SwipeController extends Controller
         }
     
         /**
-         * Show the form for editing the specified Swipe
+         * Show the form for editing the specified Vaccine
          *
-         * @param \App\Swipe $swipe
+         * @param \App\Vaccine $vaccine
          * @return \Illuminate\Http\Response
          */
-        public function edit(Swipe $swipe)
+        public function edit(Vaccine $vaccine)
         {
-         //   $status = Swipe::status();
-            return view('admin.swipes.edit', compact('swipe'));
+         //   $status = Vaccine::status();
+            return view('admin.vaccines.edit', compact('vaccine'));
         }
     
         /**
-         * Update the Swipe
+         * Update the Vaccine
          *
-         * @param \App\Swipe $swipe
+         * @param \App\Vaccine $vaccine
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function update(Swipe $swipe)
+        public function update(Vaccine $vaccine)
         {
             $validatedData = request()->validate(
-                Swipe::validationRules($swipe->id)
+                Vaccine::validationRules($vaccine->id)
             );
     
-            $swipe->update($validatedData);
+            $vaccine->update($validatedData);
     
-            return redirect()->route('admin.swipes.index')->with([
+            return redirect()->route('admin.vaccines.index')->with([
                 'type' => 'success',
-                'message' => 'Swipe Updated'
+                'message' => 'Vaccine Updated'
             ]);
         }
     
         /**
-         * Delete the Swipe
+         * Delete the Vaccine
          *
-         * @param \App\Swipe $swipe
+         * @param \App\Vaccine $vaccine
          * @return void
          */
-        public function destroy(Swipe $swipe)
+        public function destroy(Vaccine $vaccine)
         {
-            // if ($swipe->providers()->count()) {
-            //     return redirect()->route('admin.swipes.index')->with([
+            // if ($vaccine->providers()->count()) {
+            //     return redirect()->route('admin.vaccines.index')->with([
             //         'type' => 'error',
             //         'message' => 'This record cannot be deleted as there are relationship dependencies.'
             //     ]);
             // }
             // $factory = (new Factory)->withServiceAccount(__DIR__.'/broken.json');
             // $database = $factory->createDatabase();
-            // $database->getReference('swipes/'.$swipe->fbID)->remove();
+            // $database->getReference('vaccines/'.$vaccine->fbID)->remove();
     
     
-            $swipe->delete();
+            $vaccine->delete();
     
-            return redirect()->route('admin.swipes.index')->with([
+            return redirect()->route('admin.vaccines.index')->with([
                 'type' => 'success',
-                'message' => 'Swipe deleted successfully'
+                'message' => 'Vaccine deleted successfully'
             ]);
         }
     }

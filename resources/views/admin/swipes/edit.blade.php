@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['page' => 'swipes'])
+@extends('admin.layouts.app', ['page' => 'tests'])
 
 @section('title', 'تعديل نتيجة')
 
@@ -10,18 +10,18 @@
                 <h3 class="box-title">تعديل نتيجة</h3>
             </div>
 
-            <form role="form" method="POST" action="{{ route('admin.swipes.update', ['swipe' => $swipe->id]) }}">
+            <form role="form" method="POST" action="{{ route('admin.tests.update', ['test' => $test->id]) }}">
                 @csrf
                 @method('PUT')
                     <div class="box-body">
                     <div class="form-group">
-                        <label for="number">رقم المسحة</label>
+                        <label for="number">رقم التحليل</label>
                         <input type="text"
                             class="form-control"
                             name="number"
                             required
-                            placeholder="رقم المسحة"
-                            value="{{ old('number',$swipe->number) }}"
+                            placeholder="رقم التحليل"
+                            value="{{ old('number',$test->number) }}"
                             id="number"
                         >
                     </div>
@@ -32,18 +32,18 @@
                             name="passport"
                             required
                             placeholder="رقم جواز السفر"
-                            value="{{ old('passport',$swipe->passport) }}"
+                            value="{{ old('passport',$test->passport) }}"
                             id="passport"
                         >
                     </div>
                     <div class="form-group">
-                        <label for="taken_at">تاريخ إجراء المسحة</label>
+                        <label for="taken_at">تاريخ إجراء التحليل</label>
                         <input type="date"
                             class="form-control"
                             name="taken_at"
                             required
-                            placeholder="تاريخ إجراء المسحة"
-                            value="{{ old('taken_at',$swipe->taken_at) }}"
+                            placeholder="تاريخ إجراء التحليل"
+                            value="{{ old('taken_at',$test->taken_at) }}"
                             id="taken_at"
                         >
                     </div>
@@ -52,7 +52,7 @@
                 <div class="box-footer">
                     <button type="submit" class="btn btn-success">تعديل</button>
 
-                    <a href="{{ route('admin.swipes.index') }}" class="btn btn-default">
+                    <a href="{{ route('admin.tests.index') }}" class="btn btn-default">
                         إالغاء
                     </a>
                 </div>

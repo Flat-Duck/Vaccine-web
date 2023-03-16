@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['page' => 'swipes'])
+@extends('admin.layouts.app', ['page' => 'tests'])
 
 @section('title', 'إضافة نتيجة جديدة')
 
@@ -9,18 +9,17 @@
             <div class="box-header with-border">
                 <h3 class="box-title">إضافة نتيجة جديدة</h3>
             </div>
-
-            <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('admin.swipes.store') }}">
+            <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('admin.tests.store') }}">
                 @csrf
 
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="number">رقم المسحة</label>
+                        <label for="number">رقم التحليل</label>
                         <input type="text"
                             class="form-control"
                             name="number"
                             required
-                            placeholder="رقم المسحة"
+                            placeholder="رقم التحليل"
                             value="{{ old('number') }}"
                             id="number"
                         >
@@ -46,12 +45,12 @@
                         >
                     </div>
                     <div class="form-group">
-                        <label for="taken_at">تاريخ إجراء المسحة</label>
+                        <label for="taken_at">تاريخ إجراء التحليل</label>
                         <input type="date"
                             class="form-control"
                             name="taken_at"
                             required
-                            placeholder="تاريخ إجراء المسحة"
+                            placeholder="تاريخ إجراء التحليل"
                             value="{{ old('taken_at') }}"
                             id="taken_at"
                         >
@@ -63,7 +62,7 @@
                 <div class="box-footer">
                     <button type="submit" class="btn btn-success">حفظ</button>
 
-                    <a href="{{ route('admin.swipes.index') }}" class="btn btn-default">
+                    <a href="{{ route('admin.tests.index') }}" class="btn btn-default">
                         إلغاء
                     </a>
                 </div>

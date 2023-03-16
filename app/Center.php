@@ -14,7 +14,7 @@ class Center extends Model
      * @var array
      */
     protected $fillable = [
-        'name','capacity','address'
+        'name','latitude','longitude','address'
     ];
 
     /**
@@ -27,7 +27,8 @@ class Center extends Model
         return [
             'name' => 'required|string',
             'address' => 'required|string',
-            'capacity' => 'required|int',
+            'latitude' => 'required',
+            'longitude' => 'required',
         ];
     }
 

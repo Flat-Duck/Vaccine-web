@@ -62,16 +62,14 @@ class PatientController extends Controller
         
         $validatedData = request()->validate(Patient::createValidationRules());
         $validatedData['password'] = bcrypt($validatedData['password']);
-            $patient = Patient::create($validatedData);
+        $validatedData['email'] = $validatedData['username'].'@vaccine.com';
+        $patient = Patient::create($validatedData);
     
             return redirect()->route('admin.patients.index')->with([
                 'type' => 'success',
                 'message' => 'Patient added'
             ]);
-        // } else {
-        //     echo 'error';
-        // }
-     
+
     }
 
     /**
